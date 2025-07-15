@@ -28,6 +28,11 @@ Estudiante listaEstudiantes[100];
 int nEst = 0;
 Semestre semestres[10];
 
+void inicializarSemestres();
+void leerEstudiante(Estudiante &e);
+void mostrarEstudiante(Estudiante &e);
+void verEstudiantesCurso(string nombreCurso);
+
 int main() {
     int op;
     do {
