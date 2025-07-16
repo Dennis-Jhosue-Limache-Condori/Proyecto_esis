@@ -149,6 +149,7 @@ void editarEstudiante(Estudiante &e) {
                 cout << "Nota invalida. Ingrese un valor entre 0 y 20.\n";
             }
         } while (cin.fail() || nota < 0 || nota > 20);
+        e.notas[i].nota = nota;
         e.promedioPonderado = e.promedioPonderado + e.notas[i].nota;
     }
     e.promedioPonderado = e.promedioPonderado / semestres[idxSem].cantidadCursos;
