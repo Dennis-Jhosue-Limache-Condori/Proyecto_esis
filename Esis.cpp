@@ -11,8 +11,9 @@ int main() {
         system("cls");
         cout << "MENU PRINCIPAL\n";
         cout << "1. Agregar estudiante\n";
-        cout << "2. Semestres\n";
-        cout << "3. Estudiantes registrados\n";
+        cout << "2. Editar estudiante\n";
+        cout << "3. Semestres\n";
+        cout << "4. Estudiantes registrados\n";
         cout << "0. Salir\n";
         cout << "Elija una opcion: "; cin >> op;
 
@@ -24,7 +25,29 @@ int main() {
                 system("pause");
                 break;
 
-            case 2: {
+            case 2:
+                if (nEst == 0) {
+                    cout << "No hay estudiantes registrados.\n";
+                    system("pause");
+                break;
+                }
+                cout << "Lista de estudiantes:\n";
+                for (int i = 0; i < nEst; i++) {
+                    cout << i + 1 << ". " << listaEstudiantes[i].nombre << " (Codigo: " << listaEstudiantes[i].codigo << ")\n";
+                }
+                int idx;
+                cout << "Seleccione el numero del estudiante a editar: ";
+                cin >> idx;
+                if (idx < 1 || idx > nEst) {
+                    cout << "Indice invalido.\n";
+                } else {
+                    editarEstudiante(listaEstudiantes[idx - 1]);
+                    cout << "Estudiante actualizado.\n";
+                }
+                system("pause");
+                break;
+                
+            case 3: {
                 int semOp;
                 do {
                     system("cls");
@@ -69,7 +92,12 @@ int main() {
                 break;
             }
 
-            case 3:
+            case 4:
+                if (nEst == 0) {
+                    cout << "No hay estudiantes registrados.\n";
+                    system("pause");
+                break;
+                }
                 for (int i = 0; i < nEst; i++) {
                     cout << "Estudiante #" << i + 1 << ":\n";
                     mostrarEstudiante(listaEstudiantes[i]);

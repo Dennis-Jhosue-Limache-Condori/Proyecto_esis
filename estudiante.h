@@ -25,5 +25,6 @@ extern int nEst;
 void leerEstudiante(Estudiante &e);
 void mostrarEstudiante(Estudiante &e);
 void verEstudiantesCurso(string nombreCurso);
+void editarEstudiante(Estudiante &e);
 
 #endif

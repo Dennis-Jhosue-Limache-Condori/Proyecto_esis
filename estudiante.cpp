@@ -23,7 +23,9 @@ void leerEstudiante(Estudiante &e) {
         e.notas[i].nombreCurso = semestres[idxSem].cursos[i].nombre;
         cout << "Nota en " << e.notas[i].nombreCurso << ": ";
         cin >> e.notas[i].nota;
+        e.promedioPonderado = e.promedioPonderado + e.notas[i].nota;
     }
+    e.promedioPonderado = e.promedioPonderado / semestres[idxSem].cantidadCursos;
 }
 
 void mostrarEstudiante(Estudiante &e) {
@@ -32,6 +34,7 @@ void mostrarEstudiante(Estudiante &e) {
     cout << "Edad: " << e.edad << endl;
     cout << "Sexo: " << e.sexo << endl;
     cout << "Semestre: " << e.semestre << endl;
+    cout << "Promedio: " << e.promedioPonderado << endl;
 }
 
 void verEstudiantesCurso(string nombreCurso) {
@@ -42,4 +45,29 @@ void verEstudiantesCurso(string nombreCurso) {
             }
         }
     }
+}
+
+void editarEstudiante(Estudiante &e) {
+    cin.ignore();
+    cout << "Editar estudiante:\n";
+    cout << "Nombre actual: " << e.nombre << "\nNuevo nombre: ";
+    getline(cin, e.nombre);
+    cout << "Codigo actual: " << e.codigo << "\nNuevo codigo: ";
+    cin >> e.codigo;
+    cout << "Edad actual: " << e.edad << "\nNueva edad: ";
+    cin >> e.edad;
+    cout << "Sexo actual: " << e.sexo << "\nNuevo sexo (M/F): ";
+    cin >> e.sexo;
+    cout << "Semestre actual: " << e.semestre << "\nNuevo semestre (1-10): ";
+    cin >> e.semestre;
+    int idxSem = e.semestre - 1;
+    e.promedioPonderado = 0;
+    cout << "Ingrese notas para los cursos del nuevo semestre:\n";
+    for (int i = 0; i < semestres[idxSem].cantidadCursos; i++) {
+        e.notas[i].nombreCurso = semestres[idxSem].cursos[i].nombre;
+        cout << "- Nota en " << e.notas[i].nombreCurso << ": ";
+        cin >> e.notas[i].nota;
+        e.promedioPonderado = e.promedioPonderado + e.notas[i].nota;
+    }
+    e.promedioPonderado = e.promedioPonderado / semestres[idxSem].cantidadCursos;
 }
