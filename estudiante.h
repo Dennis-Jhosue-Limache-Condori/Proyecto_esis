@@ -26,5 +26,8 @@ void leerEstudiante(Estudiante &e);
 void mostrarEstudiante(Estudiante &e);
 void verEstudiantesCurso(string nombreCurso);
 void editarEstudiante(Estudiante &e);
+void limpiarEntrada();
+void eliminarEstudiante(int posicion);
+
 
 #endif

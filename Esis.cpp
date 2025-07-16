@@ -12,11 +12,18 @@ int main() {
         cout << "MENU PRINCIPAL\n";
         cout << "1. Agregar estudiante\n";
         cout << "2. Editar estudiante\n";
-        cout << "3. Semestres\n";
-        cout << "4. Estudiantes registrados\n";
+        cout << "3. Eliminar estudiante\n";
+        cout << "4. Semestres\n";
+        cout << "5. Estudiantes registrados\n";
         cout << "0. Salir\n";
-        cout << "Elija una opcion: "; cin >> op;
-
+        cout << "Elija una opcion: ";
+        cin >> op;
+        if (cin.fail()) {
+            limpiarEntrada();
+            cout << "Entrada invalida. Presione una tecla...\n";
+            system("pause");
+            continue;
+        }
         system("cls");
         switch(op) {
             case 1:
@@ -24,7 +31,7 @@ int main() {
                 nEst++;
                 system("pause");
                 break;
-
+            
             case 2:
                 if (nEst == 0) {
                     cout << "No hay estudiantes registrados.\n";
@@ -36,18 +43,45 @@ int main() {
                     cout << i + 1 << ". " << listaEstudiantes[i].nombre << " (Codigo: " << listaEstudiantes[i].codigo << ")\n";
                 }
                 int idx;
+                
                 cout << "Seleccione el numero del estudiante a editar: ";
                 cin >> idx;
-                if (idx < 1 || idx > nEst) {
+                if (cin.fail() || idx < 1 || idx > nEst) {
+                    limpiarEntrada();
                     cout << "Indice invalido.\n";
-                } else {
-                    editarEstudiante(listaEstudiantes[idx - 1]);
-                    cout << "Estudiante actualizado.\n";
+                    system("pause");
+                    break;
                 }
+                editarEstudiante(listaEstudiantes[idx - 1]);
+                cout << "Estudiante actualizado.\n";
                 system("pause");
                 break;
                 
-            case 3: {
+            case 3:
+                if (nEst == 0) {
+                    cout << "No hay estudiantes para eliminar.\n";
+                    system("pause");
+                    break;
+                }
+                cout << "Lista de estudiantes:\n";
+                for (int i = 0; i < nEst; i++) {
+                    cout << i + 1 << ". " << listaEstudiantes[i].nombre << " (Codigo: " << listaEstudiantes[i].codigo << ")\n";
+                }
+                int delIdx;
+                cout << "Seleccione el numero del estudiante a eliminar: ";
+                cin >> delIdx;
+                if (cin.fail() || delIdx < 1 || delIdx > nEst) {
+                    limpiarEntrada();
+                    cout << "Indice invalido.\n";
+                    system("pause");
+                    break;
+                }
+                eliminarEstudiante(delIdx - 1);
+                cout << "Estudiante eliminado correctamente.\n";
+                system("pause");
+                break;
+                
+            case 4: {
                 int semOp;
                 do {
                     system("cls");
@@ -92,7 +126,7 @@ int main() {
                 break;
             }
 
-            case 4:
+            case 5:
                 if (nEst == 0) {
                     cout << "No hay estudiantes registrados.\n";
                     system("pause");
@@ -116,6 +150,5 @@ int main() {
         }
 
     } while(op != 0);
-
     return 0;
 }
