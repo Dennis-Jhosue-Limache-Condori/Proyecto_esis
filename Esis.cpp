@@ -91,7 +91,6 @@ int main() {
                     }
                     cout << "0. Volver\nElija una opcion: ";
                     cin >> semOp;
-                    cin >> semOp;
         
                     if (semOp >= 1 && semOp <= 10) {
                         Semestre sem = semestres[semOp - 1];
