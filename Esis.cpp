@@ -91,7 +91,8 @@ int main() {
                     }
                     cout << "0. Volver\nElija una opcion: ";
                     cin >> semOp;
-
+                    cin >> semOp;
+        
                     if (semOp >= 1 && semOp <= 10) {
                         Semestre sem = semestres[semOp - 1];
 
@@ -105,6 +106,13 @@ int main() {
                             cout << "0. Volver\nElija una opcion: ";
                             cin >> opC;
 
+                            if (cin.fail() || opC < 0 || opC > sem.cantidadCursos) {
+                                limpiarEntrada();
+                                cout << "Opcion invalida. Intente nuevamente.\n";
+                                system("pause");
+                                continue;
+                            }
+
                             if(opC >= 1 && opC <= sem.cantidadCursos) {
                                 int subOp;
                                 do {
@@ -112,7 +120,12 @@ int main() {
                                     cout << "Curso: " << sem.cursos[opC-1].nombre << endl;
                                     cout << "1. Ver estudiantes y notas\n2. Volver\nElija: ";
                                     cin >> subOp;
-
+                                    if (cin.fail() || subOp < 1 || subOp > 2) {
+                                        limpiarEntrada(); 
+                                        cout << "Opcion invalida. Intente nuevamente.\n";
+                                        system("pause");
+                                        continue;
+                                    }
                                     if(subOp == 1) {
                                         verEstudiantesCurso(sem.cursos[opC-1].nombre);
                                         system("pause");
